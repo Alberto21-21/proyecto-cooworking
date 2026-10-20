@@ -1,6 +1,6 @@
 const tareas = [];
 let siguienteId = 1;
-let idEditando = null; // NUEVO: guarda el id de la tarea que estamos editando (null = ninguna)
+let idEditando = null;
 
 const inputTitulo = document.getElementById("titulo");
 const inputDescripcion = document.getElementById("descripcion");
@@ -23,7 +23,7 @@ const crearTarea = (titulo, descripcion, fechaLimite) => {
   siguienteId = siguienteId + 1;
 };
 
-// NUEVO: busca la tarea por su id y cambia sus datos
+// Busca la tarea por su id y cambia sus datos
 const editarTarea = (id, titulo, descripcion, fechaLimite) => {
   for (let i = 0; i < tareas.length; i++) {
     if (tareas[i].id === id) {
@@ -34,7 +34,7 @@ const editarTarea = (id, titulo, descripcion, fechaLimite) => {
   }
 };
 
-// NUEVO: pasa los datos de la tarea a los inputs para poder cambiarlos
+// Pasa los datos de la tarea a los inputs para poder cambiarlos
 const empezarEdicion = (id) => {
   for (let i = 0; i < tareas.length; i++) {
     if (tareas[i].id === id) {
@@ -44,6 +44,26 @@ const empezarEdicion = (id) => {
       idEditando = id;
       botonCrear.textContent = "Guardar cambios";
     }
+  }
+};
+
+// NUEVO: busca la tarea por su id y la quita del array
+const eliminarTarea = (id) => {
+  for (let i = 0; i < tareas.length; i++) {
+    if (tareas[i].id === id) {
+      // splice(posición, cuántos) borra elementos del array
+      tareas.splice(i, 1);
+      break; // ya la hemos borrado, dejamos de buscar
+    }
+  }
+
+  // NUEVO: si borramos la tarea que estábamos editando, cancelamos la edición
+  if (idEditando === id) {
+    idEditando = null;
+    botonCrear.textContent = "Crear tarea";
+    inputTitulo.value = "";
+    inputDescripcion.value = "";
+    inputFecha.value = "";
   }
 };
 
@@ -62,14 +82,23 @@ const mostrarTareas = () => {
     item.textContent =
       tarea.id + " - " + tarea.titulo + " | " + fecha + " | " + tarea.estado + " ";
 
-    // NUEVO: botón Editar de cada tarea
+    // Botón Editar de cada tarea
     const botonEditar = document.createElement("button");
     botonEditar.textContent = "Editar";
     botonEditar.addEventListener("click", () => {
       empezarEdicion(tarea.id);
     });
 
+    // NUEVO: botón Eliminar de cada tarea
+    const botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.addEventListener("click", () => {
+      eliminarTarea(tarea.id);
+      mostrarTareas(); // volvemos a pintar la lista sin la tarea borrada
+    });
+
     item.appendChild(botonEditar);
+    item.appendChild(botonEliminar);
     lista.appendChild(item);
   }
 };
@@ -82,7 +111,6 @@ botonCrear.addEventListener("click", () => {
     return;
   }
 
-  // NUEVO: si estamos editando, guardamos los cambios; si no, creamos una tarea nueva
   if (idEditando === null) {
     crearTarea(titulo, inputDescripcion.value, inputFecha.value);
   } else {

@@ -1,13 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>reto-coowoerking</title>
+    <title>Proyecto Coworking</title>
   </head>
   <body>
-    <div id="app"></div>
+    <h1>Mis Tareas</h1>
+
+    <input id="titulo" placeholder="Título" />
+    <input id="descripcion" placeholder="Descripción" />
+    <input id="fecha" type="date" />
+    <button id="botonCrear">Crear tarea</button>
+
+    <p id="error"></p>
+    <ul id="listaTareas"></ul>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

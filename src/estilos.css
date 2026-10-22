@@ -1,0 +1,433 @@
+/* ---------- Colores de la guía de estilos (variables) ---------- */
+:root {
+  --fondo: #f1f5f9;
+  --oscuro: #0f172a;
+  --texto: #0f172a;
+  --texto-suave: #64748b;
+  --borde: #e2e8f0;
+  --gris-claro: #f8fafc;
+  --verde: #059669;
+  --verde-oscuro: #047857;
+  --verde-claro: #d1fae5;
+  --azul: #4f46e5;
+  --rojo: #dc2626;
+  --rojo-claro: #fee2e2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+}
+
+/* ---------- Barra de navegación ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 0 32px;
+  background-color: var(--oscuro);
+  color: white;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.menu {
+  display: flex;
+  gap: 6px;
+}
+
+.menu a {
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: #cbd5e1;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  color: white;
+}
+
+/* El enlace de la página actual (Inicio) con fondo más claro */
+.menu a.activo {
+  background-color: #334155;
+  color: white;
+}
+
+.usuario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px 5px 6px;
+  border-radius: 999px;
+  background-color: #1e293b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--verde);
+  font-size: 11px;
+}
+
+/* ---------- Estructura de la página ---------- */
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Rejilla de dos columnas: la izquierda el doble de ancha que la derecha */
+.rejilla {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+/* ---------- Vistas (Inicio y Mis Tareas) ---------- */
+.vista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* La vista que no estamos viendo se esconde. Tiene que ir DESPUÉS de .vista */
+.oculto {
+  display: none;
+}
+
+/* ---------- Tarjetas ---------- */
+.tarjeta {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+.tarjeta h2 {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
+.titulo-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.titulo-fila h2 {
+  margin: 0;
+}
+
+.suave {
+  color: var(--texto-suave);
+}
+
+/* ---------- Cabecera (saludo y botones) ---------- */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.fecha-hoy {
+  margin: 0;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+.cabecera h1 {
+  margin: 4px 0;
+  font-size: 26px;
+}
+
+.subtitulo {
+  margin: 0;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+.botones-cabecera {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+  padding: 8px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background-color: #f1f5f9;
+}
+
+/* Botón verde principal (Crear Plan, Crear tarea) */
+.boton-primario {
+  border-color: var(--verde);
+  background-color: var(--verde);
+  color: white;
+  white-space: nowrap;
+}
+
+.boton-primario:hover {
+  background-color: var(--verde-oscuro);
+}
+
+/* ---------- Resumen de situación ---------- */
+.etiqueta-estado {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.estadistica {
+  padding: 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+}
+
+.estadistica small {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+}
+
+.estadistica strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 22px;
+}
+
+.verde {
+  color: var(--verde);
+}
+
+.azul {
+  color: var(--azul);
+}
+
+/* ---------- Próximo evento ---------- */
+.evento {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+}
+
+/* El cuadrado oscuro con el mes y el día */
+.dia-caja {
+  width: 42px;
+  padding: 6px 0;
+  border-radius: 8px;
+  background-color: var(--oscuro);
+  color: white;
+  text-align: center;
+}
+
+.dia-caja small {
+  display: block;
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+.dia-caja strong {
+  font-size: 16px;
+}
+
+.evento-titulo {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ---------- Mis tareas ---------- */
+.ver-todas {
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+/* El formulario salta de línea si no caben todos los campos */
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.formulario input,
+.formulario select {
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto);
+  font-size: 12px;
+}
+
+/* Título y descripción forman la primera fila; fecha, prioridad y botón la segunda */
+#titulo,
+#descripcion {
+  flex: 1 1 45%;
+}
+
+#fecha {
+  flex: 1;
+}
+
+.error {
+  min-height: 16px;
+  margin: 4px 0 8px;
+  font-size: 12px;
+  color: var(--rojo);
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada tarea: una caja con el título a la izquierda y lo demás a la derecha */
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+  font-size: 12px;
+}
+
+.tarea-titulo {
+  flex: 1;
+  font-weight: 600;
+}
+
+/* La etiqueta gris con la fecha */
+.etiqueta {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  color: #475569;
+  font-size: 11px;
+}
+
+.acciones {
+  display: flex;
+  gap: 6px;
+}
+
+.boton-pequeno {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton-editar {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.boton-eliminar {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+/* ---------- Prioridad (la clase alta, media o baja la pone main.js) ---------- */
+.prioridad {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.alta {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+.media {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.baja {
+  background-color: #e5e7eb;
+  color: #475569;
+}
+
+/* ---------- Control de gastos ---------- */
+.importe {
+  margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* ---------- Móvil: todo en una sola columna ---------- */
+@media (max-width: 800px) {
+  .rejilla {
+    grid-template-columns: 1fr;
+  }
+
+  .cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .botones-cabecera {
+    flex-wrap: wrap;
+  }
+
+  .menu {
+    display: none;
+  }
+}

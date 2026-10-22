@@ -1,0 +1,171 @@
+/* Los dos colores de la página: azul marino y blanco.*/
+:root {
+  --marino: #0b1f4d;
+  --marino-claro: #e8edf7;
+  --blanco: #ffffff;
+}
+
+/* Toda la página: tipo de letra y fondo azul marino */
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--marino);
+}
+
+/* Caja que centra el contenido: ancho máximo de 750px y centrada en la pantalla */
+.contenedor {
+  max-width: 750px;
+  margin: 24px auto;
+}
+
+/* La tarjeta blanca donde está todo: espacio por dentro y esquinas redondeadas */
+.tarjeta {
+  padding: 20px;
+  border-radius: 12px;
+  background-color: var(--blanco);
+  color: var(--marino);
+}
+
+/* Fila del título: "Mis Tareas" a la izquierda y "Ver todas" a la derecha */
+.titulo-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* El título "Mis Tareas": sin margen por defecto para que no deje un hueco arriba */
+.titulo-fila h2 {
+  margin: 0;
+}
+
+/* El enlace "Ver todas →": azul marino y sin el subrayado por defecto */
+.ver-todas {
+  color: var(--marino);
+  text-decoration: none;
+}
+
+/* El formulario: sus elementos van en fila y saltan a la línea de abajo si no caben */
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Inputs y desplegable: fondo blanco, borde azul marino y esquinas redondeadas */
+.formulario input,
+.formulario select {
+  padding: 8px;
+  border: 1px solid var(--marino);
+  border-radius: 6px;
+  background-color: var(--blanco);
+  color: var(--marino);
+}
+
+/* Título y descripción: cada uno ocupa casi la mitad, así forman la primera fila */
+#titulo,
+#descripcion {
+  flex: 1 1 45%;
+}
+
+/* La fecha: ocupa el espacio que sobra en la segunda fila */
+#fecha {
+  flex: 1;
+}
+
+/* El botón "Crear tarea": fondo azul marino, letra blanca y sin partirse en dos líneas */
+.boton-primario {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--marino);
+  color: var(--blanco);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* El mensaje de error del título vacío: en negrita para que se note */
+.error {
+  color: var(--marino);
+  font-weight: bold;
+}
+
+/* La lista de tareas: sin puntos ni margen por defecto */
+.lista {
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada tarea: caja con borde azul marino y elementos en fila */
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding: 10px;
+  border: 1px solid var(--marino);
+  border-radius: 8px;
+}
+
+/* El título de la tarea ocupa el espacio libre, así lo demás se pega a la derecha */
+.tarea-titulo {
+  flex: 1;
+  font-weight: bold;
+}
+
+/* La fecha de la tarea */
+.etiqueta {
+  font-size: 13px;
+}
+
+/* Los botones Editar y Eliminar: uno al lado del otro */
+.acciones {
+  display: flex;
+  gap: 6px;
+}
+
+/* Estilo común de los dos botones pequeños: borde azul marino y esquinas redondeadas */
+.boton-pequeno {
+  padding: 4px 10px;
+  border: 1px solid var(--marino);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Editar: blanco con letra azul marino */
+.boton-editar {
+  background-color: var(--blanco);
+  color: var(--marino);
+}
+
+/* Eliminar: azul marino con letra blanca, para que se distinga del de editar */
+.boton-eliminar {
+  background-color: var(--marino);
+  color: var(--blanco);
+}
+
+/* La etiqueta de prioridad: forma de píldora, letra pequeña y primera letra en mayúscula */
+.prioridad {
+  padding: 2px 10px;
+  border: 1px solid var(--marino);
+  border-radius: 10px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+/* Con solo dos colores, cada prioridad se distingue por cuánto azul lleva:
+   alta = relleno azul marino, media = solo borde, baja = fondo azul muy suave */
+.alta {
+  background-color: var(--marino);
+  color: var(--blanco);
+}
+
+.media {
+  background-color: var(--blanco);
+  color: var(--marino);
+}
+
+.baja {
+  background-color: var(--marino-claro);
+  color: var(--marino);
+  border-color: var(--marino-claro);
+}

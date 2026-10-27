@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agenda Personal</title>
+  </head>
+  <body>
+    <!-- BARRA DE NAVEGACIÓN -->
+    <header class="navbar">
+      <span class="logo">Agenda Personal</span>
+
+      <nav class="menu">
+        <a href="#" class="activo" data-vista="inicio">Inicio</a>
+        <a href="#" data-vista="tareas">Mis Tareas</a>
+        <a href="#" data-vista="calendario">Calendario</a>
+        <a href="#" data-vista="gastos">Gastos</a>
+      </nav>
+    </header>
+
+    <main class="contenedor">
+      <!-- ========== VISTA: INICIO ========== -->
+      <div id="vista-inicio" class="vista">
+        <!-- CABECERA: saludo y botones -->
+        <section class="tarjeta cabecera">
+          <div>
+            <p id="fecha-hoy" class="fecha-hoy"></p>
+            <h1>Hola, usuario</h1>
+            <p class="subtitulo">Aquí tienes el resumen actualizado de tu día.</p>
+          </div>
+
+          <div class="botones-cabecera">
+            <button type="button" id="boton-crear-plan" class="boton boton-primario" data-vista="calendario">Crear Plan</button>
+            <button type="button" class="boton" data-vista="gastos">+ Añadir Gasto</button>
+            <button type="button" class="boton" data-vista="tareas">+ Nueva Tarea</button>
+          </div>
+        </section>
+
+        <div class="rejilla">
+          <!-- RESUMEN DE SITUACIÓN -->
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2>Resumen de Situación</h2>
+              <span class="etiqueta-estado">Estado Activo</span>
+            </div>
+
+            <div class="estadisticas">
+              <div class="estadistica">
+                <small>Tareas completadas</small>
+                <strong id="stat-tareas" class="verde">0 / 0</strong>
+              </div>
+              <div class="estadistica">
+                <small>Eventos esta semana</small>
+                <strong id="stat-eventos" class="azul">0</strong>
+              </div>
+              <div class="estadistica">
+                <small>Gasto este mes</small>
+                <strong id="stat-gasto">0,00 €</strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- PRÓXIMO EVENTO -->
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2>Próximo Evento</h2>
+              <a href="#" class="ver-todas" data-vista="calendario">Calendario →</a>
+            </div>
+            <div id="proximo-evento"></div>
+          </section>
+
+          <!-- MIS TAREAS (resumen): las 3 pendientes más importantes -->
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2>Mis Tareas</h2>
+              <a href="#" class="ver-todas" data-vista="tareas">Ver todas →</a>
+            </div>
+
+            <ul id="listaResumen" class="lista"></ul>
+          </section>
+
+          <!-- CONTROL DE GASTOS -->
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2>Control de Gastos</h2>
+              <a href="#" class="ver-todas" data-vista="gastos">Ver →</a>
+            </div>
+            <p id="gasto-mes" class="importe">0,00 €</p>
+            <small class="suave">Gastado este mes</small>
+          </section>
+        </div>
+      </div>
+
+      <!-- ========== VISTA: MIS TAREAS ========== -->
+      <div id="vista-tareas" class="vista oculto">
+        <section class="tarjeta">
+          <div class="titulo-fila">
+            <h2>Mis Tareas</h2>
+            <div id="filtros-tareas" class="filtros">
+              <button type="button" class="filtro activo" data-filtro="todas">Todas</button>
+              <button type="button" class="filtro" data-filtro="pendientes">Pendientes</button>
+              <button type="button" class="filtro" data-filtro="completadas">Completadas</button>
+            </div>
+          </div>
+
+          <form id="form-tarea" class="formulario" novalidate>
+            <input id="titulo" name="titulo" placeholder="Título" required maxlength="80" data-nombre="El título" />
+            <input id="descripcion" name="descripcion" placeholder="Descripción" maxlength="200" data-nombre="La descripción" />
+            <input id="fecha" name="fechaLimite" type="date" data-nombre="La fecha límite" />
+            <select id="prioridad" name="prioridad">
+              <option value="alta">Alta</option>
+              <option value="media" selected>Media</option>
+              <option value="baja">Baja</option>
+            </select>
+            <button type="submit" id="boton-crear" class="boton boton-primario">Crear tarea</button>
+            <button type="button" id="cancelar-tarea" class="boton oculto">Cancelar</button>
+          </form>
+
+          <p id="error-tarea" class="error"></p>
+          <ul id="listaTareas" class="lista"></ul>
+        </section>
+      </div>
+
+      <!-- ========== VISTA: CALENDARIO ========== -->
+      <div id="vista-calendario" class="vista oculto">
+        <div class="rejilla">
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2 id="titulo-mes"></h2>
+              <div class="acciones">
+                <button type="button" id="mes-anterior" class="boton" aria-label="Mes anterior">‹</button>
+                <button type="button" id="mes-hoy" class="boton">Hoy</button>
+                <button type="button" id="mes-siguiente" class="boton" aria-label="Mes siguiente">›</button>
+              </div>
+            </div>
+
+            <div class="calendario semana">
+              <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
+            </div>
+            <div id="dias-calendario" class="calendario"></div>
+
+            <div class="leyenda">
+              <span><span class="marca plan"></span> Planes</span>
+              <span><span class="marca examen"></span> Exámenes</span>
+              <span><span class="marca tarea"></span> Tareas pendientes</span>
+            </div>
+          </section>
+
+          <section class="tarjeta">
+            <div class="titulo-fila">
+              <h2 id="titulo-dia"></h2>
+              <button type="button" id="nuevo-plan" class="boton boton-primario">+ Nuevo</button>
+            </div>
+            <ul id="lista-dia" class="lista"></ul>
+
+            <h2 class="separado">Próximos planes y exámenes</h2>
+            <ul id="lista-proximos" class="lista lista-eventos"></ul>
+          </section>
+        </div>
+      </div>
+
+      <!-- ========== VISTA: GASTOS ========== -->
+      <div id="vista-gastos" class="vista oculto">
+        <div class="rejilla">
+          <section class="tarjeta">
+            <h2>Mis Gastos</h2>
+
+            <form id="form-gasto" class="formulario" novalidate>
+              <input name="concepto" class="campo-ancho" placeholder="Concepto" required maxlength="60" data-nombre="El concepto" />
+              <input name="importe" type="number" min="0.01" step="0.01" placeholder="Importe (€)" required data-nombre="El importe" />
+              <select name="categoria">
+                <option value="comida">Comida</option>
+                <option value="transporte">Transporte</option>
+                <option value="estudios">Estudios</option>
+                <option value="hogar">Hogar</option>
+                <option value="otros" selected>Otros</option>
+              </select>
+              <input name="fecha" type="date" required data-nombre="La fecha" />
+              <button type="submit" class="boton boton-primario">Añadir gasto</button>
+            </form>
+
+            <p id="error-gasto" class="error"></p>
+            <ul id="lista-gastos" class="lista"></ul>
+          </section>
+
+          <section class="tarjeta">
+            <h2>Este mes</h2>
+            <p id="total-gastos-mes" class="importe">0,00 €</p>
+
+            <h2 class="separado">Por categoría</h2>
+            <ul id="lista-categorias" class="lista"></ul>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL: crear / editar plan o examen -->
+    <dialog id="dialogo-evento" class="dialogo">
+      <form id="form-evento" class="formulario-columna" novalidate>
+        <h2 id="titulo-dialogo-evento">Nuevo plan o examen</h2>
+
+        <label>
+          Tipo
+          <select name="tipo">
+            <option value="plan" selected>Plan</option>
+            <option value="examen">Examen</option>
+          </select>
+        </label>
+        <label>
+          Título
+          <input name="titulo" required maxlength="80" data-nombre="El título" />
+        </label>
+        <label>
+          Fecha
+          <input name="fecha" type="date" required data-nombre="La fecha" />
+        </label>
+        <div class="fila-campos">
+          <label>
+            Desde
+            <input name="horaInicio" type="time" data-nombre="La hora de inicio" />
+          </label>
+          <label>
+            Hasta
+            <input name="horaFin" type="time" data-nombre="La hora de fin" />
+          </label>
+        </div>
+        <label>
+          Lugar
+          <input name="lugar" maxlength="80" data-nombre="El lugar" />
+        </label>
+
+        <p id="error-evento" class="error"></p>
+        <div class="acciones acciones-dialogo">
+          <button type="button" id="cancelar-evento" class="boton">Cancelar</button>
+          <button type="submit" class="boton boton-primario">Guardar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

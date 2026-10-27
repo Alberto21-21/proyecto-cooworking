@@ -1,0 +1,745 @@
+
+/* Permiten mantener una paleta uniforme y cambiarla desde un solo lugar. */
+:root {
+  --fondo: #f1f5f9;
+  --oscuro: #0f172a;
+  --texto: #0f172a;
+  --texto-suave: #64748b;
+  --borde: #e2e8f0;
+  --gris-claro: #f8fafc;
+  --verde: #059669;
+  --verde-oscuro: #047857;
+  --verde-claro: #d1fae5;
+  --azul: #4f46e5;
+  --rojo: #dc2626;
+  --rojo-claro: #fee2e2;
+}
+
+/* Incluye el borde y el relleno dentro del ancho y alto definidos para cada elemento. */
+* {
+  box-sizing: border-box;
+}
+
+/* Estilo base de toda la página: elimina el margen del navegador y define tipografía y colores. */
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+}
+
+/*Barra de navegación */
+/* Coloca la marca y los enlaces en una fila y distribuye el espacio entre ellos. */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  padding: 0 32px;
+  background-color: var(--oscuro);
+  color: white;
+}
+
+/* Mantiene el nombre o logotipo en una sola línea y le da énfasis tipográfico. */
+.logo {
+  font-weight: 700;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* Agrupa los enlaces del menú horizontalmente con una separación uniforme. */
+.menu {
+  display: flex;
+  gap: 6px;
+}
+
+/* Da formato a los enlaces de navegación y elimina el subrayado predeterminado. */
+.menu a {
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: #cbd5e1;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+/* Aumenta el contraste del enlace cuando el cursor pasa por encima. */
+.menu a:hover {
+  color: white;
+}
+
+/* El enlace de la página actual (Inicio) con fondo más claro */
+.menu a.activo {
+  background-color: #334155;
+  color: white;
+}
+
+/*Estructura de la página*/
+/* Centra el contenido, limita su ancho y separa verticalmente sus secciones. */
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+/* Rejilla de dos columnas: la izquierda ocupa el doble de espacio que la derecha. */
+.rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+/*Vistas (Inicio y Mis Tareas)*/
+/* Apila verticalmente los bloques de cada vista y los separa. */
+.vista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* La vista que no estamos viendo se esconde. Tiene que ir DESPUÉS de .vista */
+.oculto {
+  display: none;
+}
+
+/* Tarjetas */
+/* Apariencia común de los paneles de contenido. */
+.tarjeta {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Ajusta el espacio y tamaño de los títulos dentro de las tarjetas. */
+.tarjeta h2 {
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
+/* Alinea en una fila el título de una tarjeta y los controles que lo acompañen. */
+.titulo-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Evita un margen adicional en el título dentro de esa fila. */
+.titulo-fila h2 {
+  margin: 0;
+}
+
+/* Aplica el color secundario a textos informativos o de menor énfasis. */
+.suave {
+  color: var(--texto-suave);
+}
+
+/*Cabecera (saludo y botones)*/
+/* Distribuye el saludo y las acciones de la cabecera en extremos opuestos. */
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Presenta la fecha con menor tamaño y contraste que el saludo principal. */
+.fecha-hoy {
+  margin: 0;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+/* Define el tamaño y los márgenes del saludo principal. */
+.cabecera h1 {
+  margin: 4px 0;
+  font-size: 26px;
+}
+
+/* Da formato secundario al texto descriptivo bajo el saludo. */
+.subtitulo {
+  margin: 0;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+/* Agrupa los botones de la cabecera en una fila. */
+.botones-cabecera {
+  display: flex;
+  gap: 8px;
+}
+
+/*Botones*/
+/* Estilo compartido para botones: forma, tipografía y señal de interacción. */
+.boton {
+  padding: 8px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Resalta los botones al pasar el cursor sin cambiar su tamaño ni posición. */
+.boton:hover {
+  background-color: #f1f5f9;
+}
+
+/* Botón verde principal (Crear Plan, Crear tarea) */
+.boton-primario {
+  border-color: var(--verde);
+  background-color: var(--verde);
+  color: white;
+  white-space: nowrap;
+}
+
+/* Oscurece el botón principal al pasar el cursor para indicar interacción. */
+.boton-primario:hover {
+  background-color: var(--verde-oscuro);
+}
+
+/*Resumen de situación */
+/* Muestra el estado general como una etiqueta verde redondeada. */
+.etiqueta-estado {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Organiza las métricas del resumen en tres columnas iguales. */
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Presenta cada métrica dentro de un recuadro independiente. */
+.estadistica {
+  padding: 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+}
+
+/* Muestra la etiqueta de cada métrica en una línea propia y con texto secundario. */
+.estadistica small {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+}
+
+/* Destaca el valor numérico de cada métrica. */
+.estadistica strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 22px;
+}
+
+/* Colores utilitarios para destacar datos positivos y elementos azules. */
+.verde {
+  color: var(--verde);
+}
+
+.azul {
+  color: var(--azul);
+}
+
+/* Próximo evento*/
+/* Alinea la fecha y la información del próximo evento dentro de un recuadro. */
+.evento {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+}
+
+/* El cuadrado oscuro que contiene el mes y el día del evento. */
+.dia-caja {
+  width: 42px;
+  padding: 6px 0;
+  border-radius: 8px;
+  background-color: var(--oscuro);
+  color: white;
+  text-align: center;
+}
+
+/* Presenta el mes en menor tamaño y con menos contraste. */
+.dia-caja small {
+  display: block;
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+/* Resalta el número del día dentro del recuadro de fecha. */
+.dia-caja strong {
+  font-size: 16px;
+}
+
+/* Da formato al nombre del evento y reduce el espacio bajo el título. */
+.evento-titulo {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Mis tareas*/
+/* Enlace para navegar desde el resumen hasta la lista completa de tareas. */
+.ver-todas {
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+/* Formulario de tareas */
+/* Alinea los campos en filas y permite que pasen a otra línea si falta espacio. */
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Estilo compartido para campos de texto y listas desplegables del formulario. */
+.formulario input,
+.formulario select {
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--texto);
+  font-size: 12px;
+}
+
+/* El título y la descripción ocupan aproximadamente media fila cada uno. */
+#titulo,
+#descripcion {
+  flex: 1 1 45%;
+}
+
+/* Permite que el campo de fecha crezca para ocupar el espacio disponible. */
+#fecha {
+  flex: 1;
+}
+
+/* Reserva espacio para los mensajes de validación y los muestra en rojo. */
+.error {
+  min-height: 16px;
+  margin: 4px 0 8px;
+  font-size: 12px;
+  color: var(--rojo);
+}
+
+/* Quita viñetas y espacios predeterminados de las listas de tareas. */
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada tarea es una fila enmarcada con su contenido y controles alineados. */
+.tarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background-color: var(--gris-claro);
+  font-size: 12px;
+}
+
+/* Hace que el título use el espacio sobrante antes de las etiquetas y acciones. */
+.tarea-titulo {
+  flex: 1;
+  font-weight: 600;
+}
+
+/* Etiqueta neutra, usada por ejemplo para mostrar la fecha de una tarea. */
+.etiqueta {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: #e5e7eb;
+  color: #475569;
+  font-size: 11px;
+}
+
+/* Mantiene juntas las acciones disponibles para cada tarea. */
+.acciones {
+  display: flex;
+  gap: 6px;
+}
+
+/* Formato compacto compartido por los botones de acción de cada tarea. */
+.boton-pequeno {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Diferencia visualmente la acción de editar, sin sugerir que es destructiva. */
+.boton-editar {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Usa tonos rojos para advertir que la acción elimina una tarea. */
+.boton-eliminar {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+/* ---------- Prioridad (main.js asigna alta, media o baja) ---------- */
+/* Forma común de las etiquetas de prioridad y capitalización de su texto. */
+.prioridad {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Rojo para indicar prioridad alta. */
+.alta {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+/* Ámbar para indicar prioridad media. */
+.media {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Gris para indicar prioridad baja. */
+.baja {
+  background-color: #e5e7eb;
+  color: #475569;
+}
+
+/*  Control de gastos */
+/* Destaca el importe total o principal mostrado en el panel de gastos. */
+.importe {
+  margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+/* Listas: elementos vacíos y tareas */
+/* Estilo del mensaje mostrado cuando una lista no tiene elementos. */
+.vacio {
+  padding: 10px 0;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+/* Apila el título y la descripción de la tarea y ocupa el espacio disponible. */
+.tarea-textos {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+/* Ajusta el tamaño y el color de las casillas para marcar tareas como completadas. */
+.tarea input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--verde);
+  cursor: pointer;
+}
+
+/* Atenúa y tacha el título cuando la tarea ya está completada. */
+.tarea.completada .tarea-titulo {
+  color: var(--texto-suave);
+  text-decoration: line-through;
+}
+
+/* Resalta en rojo la fecha límite de una tarea pendiente que ya venció. */
+.etiqueta.vencida {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+/* Filtros de tareas */
+/* Agrupa horizontalmente los controles que filtran la lista de tareas. */
+.filtros {
+  display: flex;
+  gap: 4px;
+}
+
+/* Apariencia común de cada opción de filtro. */
+.filtro {
+  padding: 4px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  background-color: white;
+  color: var(--texto-suave);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* Distingue el filtro seleccionado de las demás opciones. */
+.filtro.activo {
+  border-color: var(--oscuro);
+  background-color: var(--oscuro);
+  color: white;
+}
+
+/*Formularios en columna (perfil y modal) */
+/* Apila los campos y establece el espacio vertical entre ellos. */
+.formulario-columna {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Coloca cada etiqueta encima de su campo asociado. */
+.formulario-columna label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Apariencia común para campos de texto, listas desplegables y áreas de texto. */
+.formulario-columna input,
+.formulario-columna select,
+.formulario-columna textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font: inherit;
+  font-weight: 400;
+}
+
+/* Marca con borde rojo los campos inválidos después de la interacción del usuario. */
+.formulario input:user-invalid,
+.formulario-columna input:user-invalid {
+  border-color: var(--rojo);
+}
+
+/* Alinea varios campos en una fila y distribuye el espacio entre ellos. */
+.fila-campos {
+  display: flex;
+  gap: 12px;
+}
+
+/* Hace que cada etiqueta/campo de la fila comparta el espacio disponible. */
+.fila-campos label {
+  flex: 1;
+}
+
+/* Permite que un campo ocupe toda la anchura de la fila. */
+.campo-ancho {
+  flex: 1 1 100%;
+}
+
+/* Añade separación superior en los bloques que necesitan distinguirse del anterior. */
+.separado {
+  margin-top: 20px !important;
+}
+
+/*Modal (<dialog>)*/
+/* Limita el ancho y define el aspecto del cuadro de diálogo. */
+.dialogo {
+  width: min(420px, 92vw);
+  padding: 24px;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+}
+
+/* Ajusta el título del diálogo para que no herede márgenes innecesarios. */
+.dialogo h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* Oscurece el fondo detrás del diálogo abierto. */
+.dialogo::backdrop {
+  background-color: rgba(15, 23, 42, 0.5);
+}
+
+/* Alinea las acciones del diálogo hacia el borde derecho. */
+.acciones-dialogo {
+  justify-content: flex-end;
+}
+
+/* Calendario  */
+/* Distribuye los días y encabezados del calendario en siete columnas. */
+.calendario {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+/* Estilo de la fila con los nombres de los días de la semana. */
+.calendario.semana {
+  margin-bottom: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+/* Apariencia y disposición de cada día seleccionable del calendario. */
+.dia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 58px;
+  padding: 6px 2px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background-color: var(--gris-claro);
+  color: var(--texto);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Indica visualmente que el día puede seleccionarse al pasar el cursor. */
+.dia:hover {
+  border-color: var(--texto-suave);
+}
+
+/* Reserva celdas para alinear el calendario sin mostrar un día interactivo. */
+.dia.vacio {
+  border: none;
+  background: none;
+  cursor: default;
+}
+
+/* Destaca el número del día actual con el color principal. */
+.dia.hoy .numero-dia {
+  font-weight: 800;
+  color: var(--verde);
+}
+
+/* Resalta la celda del día seleccionado y mejora el contraste de su contenido. */
+.dia.seleccionado {
+  border-color: var(--oscuro);
+  background-color: var(--oscuro);
+  color: white;
+}
+
+/* Mantiene legible en blanco el número del día seleccionado. */
+.dia.seleccionado .numero-dia {
+  color: white;
+}
+
+/* Agrupa las marcas de eventos dentro de una celda y permite que pasen de línea. */
+.marcas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2px;
+}
+
+/* Indicadores compactos con el número de planes, exámenes o tareas de un día. */
+.marca {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 999px;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+/* El color de cada indicador identifica la categoría del evento. */
+.marca.plan {
+  background-color: var(--azul);
+}
+
+.marca.examen {
+  background-color: var(--rojo);
+}
+
+.marca.tarea {
+  background-color: var(--verde);
+}
+
+/* Leyenda que explica las categorías indicadas por las marcas del calendario. */
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--texto-suave);
+}
+
+/* Reduce las marcas de la leyenda para que funcionen como muestras de color. */
+.leyenda .marca {
+  min-width: 10px;
+  height: 10px;
+  vertical-align: middle;
+}
+
+/* Etiqueta que identifica el tipo de evento en el detalle del día. */
+.tipo {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Cada categoría de evento tiene un color asociado para reconocerla rápidamente. */
+.tipo.plan {
+  background-color: #e0e7ff;
+  color: var(--azul);
+}
+
+.tipo.examen {
+  background-color: var(--rojo-claro);
+  color: var(--rojo);
+}
+
+.tipo.tarea {
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+}
+
+/* Apila los eventos de la lista del día y deja espacio entre ellos. */
+.lista-eventos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Indica que los eventos de esta lista responden a una interacción. */
+.lista-eventos .evento {
+  cursor: pointer;
+}
+
+/* Separa visualmente cada fila de categoría mediante una línea inferior. */
+.fila-categoria {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--borde);
+  font-size: 12px;
+}

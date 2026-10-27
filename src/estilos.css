@@ -1,134 +1,31 @@
-/* ---------- Colores de la guía de estilos (variables) ---------- */
+/* Los dos colores de la página: azul marino y blanco.*/
 :root {
-  --fondo: #f1f5f9;
-  --oscuro: #0f172a;
-  --texto: #0f172a;
-  --texto-suave: #64748b;
-  --borde: #e2e8f0;
-  --gris-claro: #f8fafc;
-  --verde: #059669;
-  --verde-oscuro: #047857;
-  --verde-claro: #d1fae5;
-  --azul: #4f46e5;
-  --rojo: #dc2626;
-  --rojo-claro: #fee2e2;
+  --marino: #0b1f4d;
+  --marino-claro: #e8edf7;
+  --blanco: #ffffff;
 }
 
-* {
-  box-sizing: border-box;
-}
-
+/* Toda la página: tipo de letra y fondo azul marino */
 body {
-  margin: 0;
-  font-family: Inter, "Segoe UI", system-ui, sans-serif;
-  background-color: var(--fondo);
-  color: var(--texto);
+  font-family: Arial, sans-serif;
+  background-color: var(--marino);
 }
 
-/* ---------- Barra de navegación ---------- */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 56px;
-  padding: 0 32px;
-  background-color: var(--oscuro);
-  color: white;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 15px;
-  white-space: nowrap;
-}
-
-.menu {
-  display: flex;
-  gap: 6px;
-}
-
-.menu a {
-  padding: 6px 14px;
-  border-radius: 999px;
-  color: #cbd5e1;
-  font-size: 12px;
-  text-decoration: none;
-}
-
-.menu a:hover {
-  color: white;
-}
-
-/* El enlace de la página actual (Inicio) con fondo más claro */
-.menu a.activo {
-  background-color: #334155;
-  color: white;
-}
-
-.usuario {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 16px 5px 6px;
-  border-radius: 999px;
-  background-color: #1e293b;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.avatar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background-color: var(--verde);
-  font-size: 11px;
-}
-
-/* ---------- Estructura de la página ---------- */
+/* Caja que centra el contenido: ancho máximo de 750px y centrada en la pantalla */
 .contenedor {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 24px 16px;
+  max-width: 750px;
+  margin: 24px auto;
 }
 
-/* Rejilla de dos columnas: la izquierda el doble de ancha que la derecha */
-.rejilla {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 16px;
-}
-
-/* ---------- Vistas (Inicio y Mis Tareas) ---------- */
-.vista {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* La vista que no estamos viendo se esconde. Tiene que ir DESPUÉS de .vista */
-.oculto {
-  display: none;
-}
-
-/* ---------- Tarjetas ---------- */
+/* La tarjeta blanca donde está todo: espacio por dentro y esquinas redondeadas */
 .tarjeta {
   padding: 20px;
-  border-radius: 16px;
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  border-radius: 12px;
+  background-color: var(--blanco);
+  color: var(--marino);
 }
 
-.tarjeta h2 {
-  margin: 0 0 14px;
-  font-size: 14px;
-}
-
+/* Fila del título: "Mis Tareas" a la izquierda y "Ver todas" a la derecha */
 .titulo-fila {
   display: flex;
   justify-content: space-between;
@@ -136,298 +33,139 @@ body {
   margin-bottom: 14px;
 }
 
+/* El título "Mis Tareas": sin margen por defecto para que no deje un hueco arriba */
 .titulo-fila h2 {
   margin: 0;
 }
 
-.suave {
-  color: var(--texto-suave);
-}
-
-/* ---------- Cabecera (saludo y botones) ---------- */
-.cabecera {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-}
-
-.fecha-hoy {
-  margin: 0;
-  font-size: 12px;
-  color: var(--texto-suave);
-}
-
-.cabecera h1 {
-  margin: 4px 0;
-  font-size: 26px;
-}
-
-.subtitulo {
-  margin: 0;
-  font-size: 12px;
-  color: var(--texto-suave);
-}
-
-.botones-cabecera {
-  display: flex;
-  gap: 8px;
-}
-
-/* ---------- Botones ---------- */
-.boton {
-  padding: 8px 14px;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  background-color: white;
-  color: var(--texto);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.boton:hover {
-  background-color: #f1f5f9;
-}
-
-/* Botón verde principal (Crear Plan, Crear tarea) */
-.boton-primario {
-  border-color: var(--verde);
-  background-color: var(--verde);
-  color: white;
-  white-space: nowrap;
-}
-
-.boton-primario:hover {
-  background-color: var(--verde-oscuro);
-}
-
-/* ---------- Resumen de situación ---------- */
-.etiqueta-estado {
-  padding: 3px 10px;
-  border-radius: 999px;
-  background-color: var(--verde-claro);
-  color: var(--verde-oscuro);
-  font-size: 11px;
-  font-weight: 600;
-}
-
-.estadisticas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.estadistica {
-  padding: 14px;
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  background-color: var(--gris-claro);
-}
-
-.estadistica small {
-  display: block;
-  font-size: 11px;
-  color: var(--texto-suave);
-}
-
-.estadistica strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 22px;
-}
-
-.verde {
-  color: var(--verde);
-}
-
-.azul {
-  color: var(--azul);
-}
-
-/* ---------- Próximo evento ---------- */
-.evento {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  background-color: var(--gris-claro);
-}
-
-/* El cuadrado oscuro con el mes y el día */
-.dia-caja {
-  width: 42px;
-  padding: 6px 0;
-  border-radius: 8px;
-  background-color: var(--oscuro);
-  color: white;
-  text-align: center;
-}
-
-.dia-caja small {
-  display: block;
-  font-size: 9px;
-  color: #94a3b8;
-}
-
-.dia-caja strong {
-  font-size: 16px;
-}
-
-.evento-titulo {
-  margin: 0 0 2px;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-/* ---------- Mis tareas ---------- */
+/* El enlace "Ver todas →": azul marino y sin el subrayado por defecto */
 .ver-todas {
-  font-size: 11px;
-  color: var(--texto-suave);
+  color: var(--marino);
   text-decoration: none;
 }
 
-/* El formulario salta de línea si no caben todos los campos */
+/* El formulario: sus elementos van en fila y saltan a la línea de abajo si no caben */
 .formulario {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 8px;
 }
 
+/* Inputs y desplegable: fondo blanco, borde azul marino y esquinas redondeadas */
 .formulario input,
 .formulario select {
-  padding: 8px 10px;
-  border: 1px solid var(--borde);
-  border-radius: 8px;
-  background-color: white;
-  color: var(--texto);
-  font-size: 12px;
+  padding: 8px;
+  border: 1px solid var(--marino);
+  border-radius: 6px;
+  background-color: var(--blanco);
+  color: var(--marino);
 }
 
-/* Título y descripción forman la primera fila; fecha, prioridad y botón la segunda */
+/* Título y descripción: cada uno ocupa casi la mitad, así forman la primera fila */
 #titulo,
 #descripcion {
   flex: 1 1 45%;
 }
 
+/* La fecha: ocupa el espacio que sobra en la segunda fila */
 #fecha {
   flex: 1;
 }
 
-.error {
-  min-height: 16px;
-  margin: 4px 0 8px;
-  font-size: 12px;
-  color: var(--rojo);
+/* El botón "Crear tarea": fondo azul marino, letra blanca y sin partirse en dos líneas */
+.boton-primario {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--marino);
+  color: var(--blanco);
+  white-space: nowrap;
+  cursor: pointer;
 }
 
+/* El mensaje de error del título vacío: en negrita para que se note */
+.error {
+  color: var(--marino);
+  font-weight: bold;
+}
+
+/* La lista de tareas: sin puntos ni margen por defecto */
 .lista {
-  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* Cada tarea: una caja con el título a la izquierda y lo demás a la derecha */
+/* Cada tarea: caja con borde azul marino y elementos en fila */
 .tarea {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 8px;
-  padding: 10px 12px;
-  border: 1px solid var(--borde);
-  border-radius: 10px;
-  background-color: var(--gris-claro);
-  font-size: 12px;
+  padding: 10px;
+  border: 1px solid var(--marino);
+  border-radius: 8px;
 }
 
+/* El título de la tarea ocupa el espacio libre, así lo demás se pega a la derecha */
 .tarea-titulo {
   flex: 1;
-  font-weight: 600;
+  font-weight: bold;
 }
 
-/* La etiqueta gris con la fecha */
+/* La fecha de la tarea */
 .etiqueta {
-  padding: 2px 8px;
-  border-radius: 999px;
-  background-color: #e5e7eb;
-  color: #475569;
-  font-size: 11px;
+  font-size: 13px;
 }
 
+/* Los botones Editar y Eliminar: uno al lado del otro */
 .acciones {
   display: flex;
   gap: 6px;
 }
 
+/* Estilo común de los dos botones pequeños: borde azul marino y esquinas redondeadas */
 .boton-pequeno {
   padding: 4px 10px;
-  border: none;
+  border: 1px solid var(--marino);
   border-radius: 6px;
-  font-size: 11px;
-  font-weight: 600;
   cursor: pointer;
 }
 
+/* Editar: blanco con letra azul marino */
 .boton-editar {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: var(--blanco);
+  color: var(--marino);
 }
 
+/* Eliminar: azul marino con letra blanca, para que se distinga del de editar */
 .boton-eliminar {
-  background-color: var(--rojo-claro);
-  color: var(--rojo);
+  background-color: var(--marino);
+  color: var(--blanco);
 }
 
-/* ---------- Prioridad (la clase alta, media o baja la pone main.js) ---------- */
+/* La etiqueta de prioridad: forma de píldora, letra pequeña y primera letra en mayúscula */
 .prioridad {
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
+  padding: 2px 10px;
+  border: 1px solid var(--marino);
+  border-radius: 10px;
+  font-size: 12px;
   text-transform: capitalize;
 }
 
+/* Con solo dos colores, cada prioridad se distingue por cuánto azul lleva:
+   alta = relleno azul marino, media = solo borde, baja = fondo azul muy suave */
 .alta {
-  background-color: var(--rojo-claro);
-  color: var(--rojo);
+  background-color: var(--marino);
+  color: var(--blanco);
 }
 
 .media {
-  background-color: #fef3c7;
-  color: #92400e;
+  background-color: var(--blanco);
+  color: var(--marino);
 }
 
 .baja {
-  background-color: #e5e7eb;
-  color: #475569;
-}
-
-/* ---------- Control de gastos ---------- */
-.importe {
-  margin: 0 0 4px;
-  font-size: 26px;
-  font-weight: 800;
-}
-
-/* ---------- Móvil: todo en una sola columna ---------- */
-@media (max-width: 800px) {
-  .rejilla {
-    grid-template-columns: 1fr;
-  }
-
-  .cabecera {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .botones-cabecera {
-    flex-wrap: wrap;
-  }
-
-  .menu {
-    display: none;
-  }
+  background-color: var(--marino-claro);
+  color: var(--marino);
+  border-color: var(--marino-claro);
 }

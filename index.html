@@ -1,131 +1,36 @@
 <!doctype html>
 <html lang="es">
   <head>
+    <link rel="stylesheet" href="/src/estilos.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agenda Personal</title>
     <link rel="stylesheet" href="/src/estilos.css" />
   </head>
   <body>
-    <!-- BARRA DE NAVEGACIÓN -->
-    <header class="navbar">
-      <span class="logo">Agenda Personal</span>
-
-      <nav class="menu">
-        <a href="#" class="activo" data-vista="inicio">Inicio</a>
-        <a href="#" data-vista="tareas">Mis Tareas</a>
-        <a href="#">Calendario</a>
-        <a href="#">Gastos</a>
-      </nav>
-
-      <div class="usuario">
-        <span class="avatar">U</span>
-        <span>Usuario</span>
-      </div>
-    </header>
-
-    <main class="contenedor">
-      <!-- ========== VISTA: INICIO ========== -->
-      <div id="vista-inicio" class="vista">
-        <!-- CABECERA: saludo y botones -->
-        <section class="tarjeta cabecera">
-          <div>
-            <p class="fecha-hoy">Lun, 19 Octubre</p>
-            <h1>Hola, usuario</h1>
-            <p class="subtitulo">Aquí tienes el resumen actualizado de tu día.</p>
-          </div>
-
-          <div class="botones-cabecera">
-            <button class="boton boton-primario">Crear Plan</button>
-            <button class="boton">+ Añadir Gasto</button>
-            <button class="boton" data-vista="tareas">+ Nueva Tarea</button>
-          </div>
-        </section>
-
-        <div class="rejilla">
-          <!-- RESUMEN DE SITUACIÓN -->
-          <section class="tarjeta">
-            <div class="titulo-fila">
-              <h2>📊 Resumen de Situación</h2>
-              <span class="etiqueta-estado">Estado Activo</span>
-            </div>
-
-            <div class="estadisticas">
-              <div class="estadistica">
-                <small>Tareas completadas</small>
-                <strong class="verde">8 / 10</strong>
-              </div>
-              <div class="estadistica">
-                <small>Eventos esta semana</small>
-                <strong class="azul">3</strong>
-              </div>
-              <div class="estadistica">
-                <small>Gasto acumulado</small>
-                <strong>€ 145.50</strong>
-              </div>
-            </div>
-          </section>
-
-          <!-- PRÓXIMO EVENTO -->
-          <section class="tarjeta">
-            <h2>Próximo Evento</h2>
-
-            <div class="evento">
-              <div class="dia-caja">
-                <small>OCT</small>
-                <strong>19</strong>
-              </div>
-              <div>
-                <p class="evento-titulo">Cena con amigos</p>
-                <small class="suave">Hoy · 21:00 - 23:30</small>
-              </div>
-            </div>
-          </section>
-
-          <!-- MIS TAREAS (resumen): las 3 primeras tareas -->
-          <section class="tarjeta">
-            <div class="titulo-fila">
-              <h2>Mis Tareas</h2>
-              <a href="#" class="ver-todas" data-vista="tareas">Ver todas →</a>
-            </div>
-
-            <ul id="listaResumen" class="lista"></ul>
-          </section>
-
-          <!-- CONTROL DE GASTOS -->
-          <section class="tarjeta">
-            <h2>Control de Gastos</h2>
-            <p class="importe">€ 145.50</p>
-            <small class="suave">Presupuesto</small>
-          </section>
-        </div>
+  <main class="contenedor">
+    <section class="tarjeta">
+      <div class="titulo-fila">
+        <h2>Mis Tareas</h2>
+        <a href="#" class="ver-todas">Ver todas →</a>
       </div>
 
-      <!-- ========== VISTA: MIS TAREAS ========== -->
-      <div id="vista-tareas" class="vista oculto">
-        <section class="tarjeta">
-          <div class="titulo-fila">
-            <h2>Mis Tareas</h2>
-          </div>
-
-          <div class="formulario">
-            <input id="titulo" placeholder="Título" />
-            <input id="descripcion" placeholder="Descripción" />
-            <input id="fecha" type="date" />
-            <select id="prioridad">
-              <option value="alta">Alta</option>
-              <option value="media" selected>Media</option>
-              <option value="baja">Baja</option>
-            </select>
-            <button id="boton-crear" class="boton boton-primario">Crear tarea</button>
-          </div>
-
-          <p id="error" class="error"></p>
-          <ul id="listaTareas" class="lista"></ul>
-        </section>
+      <div class="formulario">
+        <input id="titulo" placeholder="Título" />
+        <input id="descripcion" placeholder="Descripción" />
+        <input id="fecha" type="date" />
+        <select id="prioridad">
+          <option value="alta">Alta</option>
+          <option value="media" selected>Media</option>
+          <option value="baja">Baja</option>
+        </select>
+        <button id="boton-crear" class="boton boton-primario">Crear tarea</button>
       </div>
-    </main>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+      <p id="error" class="error"></p>
+      <ul id="listaTareas" class="lista"></ul>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
